@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(["auth"])->group(function () {
    Route::get('/', [HomeController::class, 'index'])->name('home');
-   Route::get('/container/detail/{container:id}', [ContainerController::class, 'detail'])->name('container.detail');
+   Route::get('/container/detail/{container}', [ContainerController::class, 'detail'])->name('container.detail');
+   Route::get('/container/detail/period/{date1}/{date2}/{container}', [ContainerController::class, 'detailPeriod'])->name('container.detail.period');
+   Route::post('/period', [ContainerController::class, 'period'])->name('period');
 });
 
 

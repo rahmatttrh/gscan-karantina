@@ -12,20 +12,36 @@
       <div class="col-6">
          <div class="card">
             <div class="card-body border-bottom py-3 ">
-               <div class="row">
-                  <div class="col-10">
-                     <div class="form-floating mb-3">
-                        <input type="text" required class="form-control" id="date" name="date" placeholder="Enter data...">
-                        <label for="date">Enter data...</label>
+               <form action="{{route('period')}}" method="post">
+                  @csrf
+                  <div class="row">
+                     {{-- <div class="col-10">
+                        <div class="form-floating mb-3">
+                           <input type="text" required class="form-control" id="date" name="date" placeholder="Enter data...">
+                           <label for="date">Enter data...</label>
+                        </div>
+                     </div> --}}
+                     <div class="col-md-5">
+                        <div class="form-floating mb-3">
+                           <input type="date" required class="form-control" id="date1" name="date1">
+                           <label for="date">From</label>
+                        </div>
+                     </div>
+                     <div class="col-md-5">
+                        <div class="form-floating mb-3">
+                           <input type="date" required class="form-control" id="date2" name="date2">
+                           <label for="date">To</label>
+                        </div>
+                     </div>
+                     <div class="col-2">
+                        <button type="submit" class="btn btn-dark btn-block" style="width: 100%">Search</button>
                      </div>
                   </div>
-                  <div class="col-2">
-                     <button class="btn btn-dark btn-block" style="width: 100%">Search</button>
-                  </div>
-               </div>
+               </form>
+              
                <div class=" d-flex align-items-center">
                   <small>
-                     <p class="m-0 text-muted">Showing <span>{{$containers->firstItem()}}</span> to <span>{{$containers->lastItem()}}</span> of <span>{{$totalContainer}}</span> entries</p>
+                     {{-- <p class="m-0 text-muted">Showing <span>{{$containers->firstItem()}}</span> to <span>{{$containers->lastItem()}}</span> of <span>{{$totalContainer}}</span> entries</p> --}}
                   </small>
                </div>
             </div>
@@ -47,21 +63,43 @@
                      </tr>
                   </thead>
                   <tbody>
-                     @foreach ($containers as $cont)
-                        <tr class="{{$cont->id == $container->id ? 'bg-dark-blue' : ''}}">
-                           <td><a style="text-decoration: none" href="{{route('container.detail', enkripRambo($cont->id) )}}"><small>{{$cont->date}}</small></a></td>
-                           <td><small>{{$cont->pib_no}}</small></td>
-                           <td class="text-nowrap"><small>{{$cont->pib_date}}</small></td>
-                           <td><small>{{$cont->doc_type}}</small></td>
-                           <td><small>{{$cont->lpn}}</small></td>
-                           <td><small>{{$cont->front_cont}}</small></td>
-                           <td><small>{{$cont->back_cont}}</small></td>
-                           <td class="text-wrap text-success"><small>{{$cont->rpm}}</small></td>
-                           <td><small>{{$cont->cont_weight}}</small></td>
-                           <td><small>{{$cont->status}}</small></td>
-                           <td><small>{{$cont->verified_by}}</small></td>
+                     @if ($containers)
+                        @foreach ($containers as $cont)
+                           <tr class="{{$cont->entry_container1 == $container->entry_container1 ? 'bg-dark-blue' : ''}}">
+                              <td>
+                                 @if ($type == 1)
+                                    <a style="text-decoration: none" href="{{route('container.detail', $cont->entry_container1 )}}">
+                                       <small>{{$cont->entry_date}} <br>
+                                       {{$cont->entry_time}}
+                                       </small>
+                                    </a>
+                                    @else
+                                    <a style="text-decoration: none" href="{{route('container.detail.period', [$date1, $date2 ,$cont->entry_container1] )}}">
+                                       <small>{{$cont->entry_date}} <br>
+                                       {{$cont->entry_time}}
+                                       </small>
+                                    </a>
+                                 @endif
+                                 
+                              </td>
+                              <td><small>{{$cont->doc_no}}</small></td>
+                              <td class="text-nowrap"><small>{{$cont->doc_date}}</small></td>
+                              <td><small>{{$cont->doc_type}}</small></td>
+                              <td><small>{{$cont->lpn}}</small></td>
+                              <td><small>{{$cont->front_cont}}</small></td>
+                              <td><small>{{$cont->back_cont}}</small></td>
+                              <td class="text-wrap text-success"><small>{{$cont->speed}}</small></td>
+                              <td><small>{{$cont->entry_container_weight}}</small></td>
+                              <td><small>-</small></td>
+                              <td><small>-</small></td>
+                           </tr>
+                        @endforeach
+                        @else
+                        <tr>
+                           <td colspan="11" class="text-center p-4">Empty</td>
                         </tr>
-                     @endforeach
+                     @endif
+                     
                   
                   </tbody>
                </table>
@@ -77,10 +115,10 @@
                </div>
                </small> --}}
                <small>
-                  <p class="m-0 text-muted">Showing <span>{{$containers->firstItem()}}</span> to <span>{{$containers->lastItem()}}</span> of <span>{{$totalContainer}}</span> entries</p>
+                  {{-- <p class="m-0 text-muted">Showing <span>{{$containers->firstItem()}}</span> to <span>{{$containers->lastItem()}}</span> of <span>{{$totalContainer}}</span> entries</p> --}}
                </small>
                <div class="pagination m-0 ms-auto ">
-                  {{$containers->links()}}
+                  {{-- {{$containers->links()}} --}}
                </div>
             </div>
          </div>
@@ -90,37 +128,56 @@
       <div class="col-6">
          <div class="card">
             <div class="card-header d-flex justify-content-between">
-               <span class="avatar avatar-md" style="background-image: url({{asset('img/xray/1.jpeg')}})"></span>
-               <span class="avatar avatar-md ms-2" style="background-image: url({{asset('img/xray/2.jpeg')}})"></span>
-               <span class="avatar avatar-md ms-2" style="background-image: url({{asset('img/xray/3.jpg')}})"></span>
-               <span class="avatar avatar-md ms-2" style="background-image: url({{asset('img/xray/4.jpg')}})"></span>
-               <span class="avatar avatar-md ms-2" style="background-image: url({{asset('img/xray/5.jpg')}})"></span>
-               <span class="avatar avatar-md ms-2" style="background-image: url({{asset('img/xray/6.jpeg')}})"></span>
-               
-                
+               @if ($container)
+                  <span class="avatar avatar-md" style="background-image: url({{$cont->entry_lpn_image}})"></span>
+                  <span class="avatar avatar-md ms-2" style="background-image: url({{$cont->entry_lpn2_image}})"></span>
+                  <span class="avatar avatar-md ms-2" style="background-image: url({{$cont->entry_cont1_image}})"></span>
+                  <span class="avatar avatar-md ms-2" style="background-image: url({{$cont->entry_cont3_image}})"></span>
+                  <span class="avatar avatar-md ms-2" style="background-image: url({{$cont->entry_xray_image}})"></span>
+                  <span class="avatar avatar-md ms-2" style="background-image: url({{$cont->entry_xray_image2}})"></span>
+                  @else
+                  <span class="avatar avatar-md" style="background-image: url({{asset('img/image-gallery.png')}})"></span>
+                  <span class="avatar avatar-md ms-2" style="background-image: url({{asset('img/image-gallery.png')}})"></span>
+                  <span class="avatar avatar-md ms-2" style="background-image: url({{asset('img/image-gallery.png')}})"></span>
+                  <span class="avatar avatar-md ms-2" style="background-image: url({{asset('img/image-gallery.png')}})"></span>
+                  <span class="avatar avatar-md ms-2" style="background-image: url({{asset('img/image-gallery.png')}})"></span>
+                  <span class="avatar avatar-md ms-2" style="background-image: url({{asset('img/image-gallery.png')}})"></span>
+               @endif
             </div>
             <div class="card-body">
                <div id="carousel-controls" class="carousel slide" data-interval="false">
                   <div class="carousel-inner">
-                  <div class="carousel-item active">
-                     <img data-bs-toggle="modal" data-bs-target="#modal-full-width" class="d-block w-100" alt="" height="270" style="object-fit: cover" src="{{asset('img/xray/1.jpeg')}} ">
-                  </div>
-                  <div class="carousel-item">
+                     @if ($container)
+                        <div class="carousel-item active">
+                           <img data-bs-toggle="modal" data-bs-target="#modal-full-width" class="d-block w-100" alt="" height="270" style="object-fit: cover" src="{{$cont->entry_lpn_image}}">
+                        </div>
+                        <div class="carousel-item">
+                           
+                           <img class="d-block w-100" alt="" height="270" style="object-fit: cover" src="{{$cont->entry_lpn2_image}}">
+                        </div>
+                        <div class="carousel-item">
+                           <img class="d-block w-100" alt="" height="270" style="object-fit: cover" src="{{$cont->entry_cont1_image}}">
+                        </div>
+                        <div class="carousel-item">
+                           <img class="d-block w-100" alt="" height="270" style="object-fit: cover" src="{{$cont->entry_cont3_image}}">
+                        </div>
+                        <div class="carousel-item">
+                           <img class="d-block w-100" alt="" height="270" style="object-fit: cover" src="{{$cont->entry_xray_image}}">
+                        </div>
+                        <div class="carousel-item">
+                           <img class="d-block w-100" alt="" height="270" style="object-fit: cover" src="{{$cont->entry_xray_image2}}">
+                        </div>
+                        @else
+                        <div class="carousel-item active">
+                           <div class="card">
+                              <div class="card-body text-center">
+                                 {{-- <h5>Image Empty</h5> --}}
+                                 <img height="200px" src="{{asset('img/image-gallery.png')}}" alt="">
+                              </div>
+                           </div>
+                        </div>
+                     @endif
                      
-                     <img class="d-block w-100" alt="" height="270" style="object-fit: cover" src="{{asset('img/xray/2.jpeg')}}">
-                  </div>
-                  <div class="carousel-item">
-                     <img class="d-block w-100" alt="" height="270" style="object-fit: cover" src="{{asset('img/xray/3.jpg')}}">
-                  </div>
-                  <div class="carousel-item">
-                     <img class="d-block w-100" alt="" height="270" style="object-fit: cover" src="{{asset('img/xray/4.jpg')}}">
-                  </div>
-                  <div class="carousel-item">
-                     <img class="d-block w-100" alt="" height="270" style="object-fit: cover" src="{{asset('img/xray/5.jpg')}}">
-                  </div>
-                  <div class="carousel-item">
-                     <img class="d-block w-100" alt="" height="270" style="object-fit: cover" src="{{asset('img/xray/6.jpeg')}}">
-                  </div>
                   </div>
                   <a style="opacity: 0" class="carousel-control-prev" href="#carousel-controls" role="button" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -133,29 +190,29 @@
                </div>
             </div>
             <div class="card-footer">
-               @if ($container)
+               {{-- @if ($container) --}}
                <div class="row">
                   <div class="col-3">
                      <div class="form-floating mb-3">
-                        <input type="text" required class="form-control" id="date" name="date"  value="{{$container->lpn}}" disabled>
+                        <input type="text" required class="form-control" id="date" name="date"  value="{{$container->entry_lpn ?? ''}}" disabled>
                         <label for="date">LPN</label>
                      </div>
                   </div>
                   <div class="col-3">
                      <div class="form-floating mb-3">
-                        <input type="text" required class="form-control" id="date" name="date" value="{{$container->front_cont}}" disabled>
+                        <input type="text" required class="form-control" id="date" name="date" value="{{$container->entry_container1 ?? ''}}" disabled>
                         <label for="date">Front Cont</label>
                      </div>
                   </div>
                   <div class="col-3">
                      <div class="form-floating mb-3">
-                        <input type="text" required class="form-control" id="date" name="date" value="{{$container->back_cont}}" disabled>
+                        <input type="text" required class="form-control" id="date" name="date" value="{{$container->entry_container2 ?? ''}}" disabled>
                         <label for="date">Back Cont</label>
                      </div>
                   </div>
                   <div class="col-3">
                      <div class="form-floating mb-3">
-                        <input type="text" required class="form-control" id="date" name="date" value="{{$container->status }}" disabled>
+                        <input type="text" required class="form-control" id="date" name="date" value="-" disabled>
                         <label for="date">Status</label>
                      </div>
                   </div>
@@ -166,11 +223,11 @@
                      </div>
                   </div>
                   <div class="col-3">
-                     <a href="" class="btn btn-success btn-block" style="width: 100%"><!-- Download SVG icon from http://tabler-icons.io/i/download -->
+                     <a href="#" class="btn btn-success btn-block" style="width: 100%"><!-- Download SVG icon from http://tabler-icons.io/i/download -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><polyline points="7 11 12 16 17 11" /><line x1="12" y1="4" x2="12" y2="16" /></svg> Download</a>
                   </div>
                </div>
-               @endif
+               {{-- @endif --}}
                
             </div>
          </div>

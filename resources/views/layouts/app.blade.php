@@ -108,7 +108,7 @@
                
                <div class="nav-item d-none d-md-flex me-3">
                   <div class="btn-list">
-                     <a href="/" class="btn btn-cyan">
+                     <a href="{{route('home')}}" class="btn btn-cyan">
                         
                         <!-- Download SVG icon from http://tabler-icons.io/i/refresh -->
                         <!-- Download SVG icon from http://tabler-icons.io/i/refresh -->
