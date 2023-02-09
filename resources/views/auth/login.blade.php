@@ -24,9 +24,12 @@
     <div class="page page-center">
       <div class="container-tight ">
         <div class="text-center mb-2">
-          <div  class=" mb-3">
-            <img class="" src="{{asset('img/gscan.png')}}" height="68" alt=""> 
-            <h1 class="mt-2" style="font-weight: 900">    GSCAN KARANTINA</h1>
+          <div  class="p-1 pt-3 bg-light rounded   mb-3">
+            <div class="">
+               <img class="" src="{{asset('img/gscan-min.png')}}" height="30" alt=""> 
+            </div>
+            
+            <h3 class="mt-2 text-dark" style="font-weight: 700; font-style:italic">  KARANTINA</h3>
          </div>
         </div>
         <form class="card card-md" method="POST" action="{{ route('login') }}" autocomplete="off">
@@ -35,7 +38,7 @@
             {{-- <h2 class="card-title text-center mb-4">Login to your account</h2> --}}
             <div class="mb-3">
               <label class="form-label">Email address</label>
-              <input  type="email" name="email" id="email" class="form-control text-white @error('email') is-invalid @enderror" placeholder="Enter email">
+              <input  type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="Enter email">
               @error('email')
                <small class="form-hint nvalid-feedback text-danger">{{ $message }}</small>
                   {{-- <span class="invalid-feedback" role="alert">

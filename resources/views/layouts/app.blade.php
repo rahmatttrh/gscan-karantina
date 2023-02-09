@@ -95,12 +95,16 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
                <span class="navbar-toggler-icon"></span>
             </button>
-            <h1 class="navbar-brand d-none-navbar-horizontal pe-0 pe-md-3 me-3" style="font-weight: 800">
-               <a href="/" class="me-2 bg-logo   p-1 rounded">
-               <img src="{{asset('img/gscan-min.png')}}" alt="Tabler" style="height: 30px" class="navbar-brand-image">
-               </a>  
-               <span class="font-italic" style="font-style: italic">KARANTINA</span>  
-            </h1>
+            <div class="navbar-brand d-none-navbar-horizontal pe-0 pe-md-3 me-3" s>
+               {{-- <a href="/" class="me-2 p-1 px-2 bg-logo rounded">
+               <img src="{{asset('img/gscan.png')}}" alt="Tabler" class="navbar-brand-image">
+               </a>   --}}
+               <a href="/" class="me-2 p-1 px-2 bg-logo rounded">
+                  <img src="{{asset('img/gscan-min.png')}}" alt="Tabler" width="70">
+                  </a>  
+               <small><span  style="font-style: italic">Karantina</span>  </small>
+               {{-- class="navbar-brand-image" --}}
+            </div>
             <div class="navbar-nav flex-row order-md-last">
                <a href="?theme=dark" class="nav-link px-0 hide-theme-dark me-3" title="Enable dark mode" data-bs-toggle="tooltip" data-bs-placement="bottom">
                <!-- Download SVG icon from http://tabler-icons.io/i/moon -->
@@ -145,11 +149,11 @@
                   </div>
                </a>
                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                  <a href="#" class="dropdown-item">Set status</a>
+                  {{-- <a href="#" class="dropdown-item">Set status</a>
                   <a href="#" class="dropdown-item">Profile & account</a>
                   <a href="#" class="dropdown-item">Feedback</a>
                   <div class="dropdown-divider"></div>
-                  <a href="#" class="dropdown-item">Settings</a>
+                  <a href="#" class="dropdown-item">Settings</a> --}}
                   <a class="dropdown-item" href="{{ route('logout') }}"
                   onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">

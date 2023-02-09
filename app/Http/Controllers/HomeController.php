@@ -36,10 +36,21 @@ class HomeController extends Controller
       //    "http://192.168.88.106/bc/karantina/tanggal/" . $today->format('Y-m-d'),
       // )->object();
 
+      $users = Http::withHeaders([
+         'Accept' => 'applicaton/json'
+      ])->get(
+         "https://jsonplaceholder.typicode.com/users",
+      )->object();
+
+      // dd($users);
+
+
+
       return view('dashboard', [
          'type' => 1,
          'containers' => null,
-         'container' => null
+         'container' => null,
+         'users' => $users
          // 'totalContainer' => count($containers),
          // 'container' => $container
       ])->with('i');

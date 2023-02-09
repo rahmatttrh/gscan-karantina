@@ -50,6 +50,11 @@
                      </tr>
                   </thead>
                   <tbody>
+                     {{-- @foreach ($users as $user)
+                         <tr>
+                           <td colspan="11">{{$user->name}}</td>
+                         </tr>
+                     @endforeach --}}
                      @if ($containers)
                         @foreach ($containers as $cont)
                            <tr class="{{$cont->entry_container1 == $container->entry_container1 ? 'bg-dark-blue' : ''}}">
