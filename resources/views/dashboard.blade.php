@@ -2,25 +2,12 @@
 @section('content')
 <div class="container-fluid">
    <div class="row ">
-      {{-- Left --}}
-      <div class="coll-12">
-         {{-- <figure class="zoom" onmousemove="zoom(event)" style="background-image: url(//res.cloudinary.com/active-bridge/image/upload/slide1.jpg)">
-            <img src="//res.cloudinary.com/active-bridge/image/upload/slide1.jpg" />
-          </figure> --}}
-          
-      </div>
       <div class="col-6">
          <div class="card">
             <div class="card-body border-bottom py-3 ">
                <form action="{{route('period')}}" method="post">
                   @csrf
                   <div class="row">
-                     {{-- <div class="col-10">
-                        <div class="form-floating mb-3">
-                           <input type="text" required class="form-control" id="date" name="date" placeholder="Enter data...">
-                           <label for="date">Enter data...</label>
-                        </div>
-                     </div> --}}
                      <div class="col-md-5">
                         <div class="form-floating mb-3">
                            <input type="date" required class="form-control" id="date1" name="date1">
@@ -103,23 +90,6 @@
                   
                   </tbody>
                </table>
-               
-            </div>
-            <div class="card-footer d-flex align-items-center">
-               {{-- <small>
-                  <div class="text-muted ">
-                     Page
-                     <div class="mx-2 d-inline-block">
-                        <input type="text" class="form-control form-control-sm" value="{{$containers->currentPage()}}" size="3" aria-label="Invoices count" disabled>
-                     </div>
-               </div>
-               </small> --}}
-               <small>
-                  {{-- <p class="m-0 text-muted">Showing <span>{{$containers->firstItem()}}</span> to <span>{{$containers->lastItem()}}</span> of <span>{{$totalContainer}}</span> entries</p> --}}
-               </small>
-               <div class="pagination m-0 ms-auto ">
-                  {{-- {{$containers->links()}} --}}
-               </div>
             </div>
          </div>
       </div>
@@ -223,7 +193,7 @@
                      </div>
                   </div>
                   <div class="col-3">
-                     <a href="#" class="btn btn-success btn-block" style="width: 100%"><!-- Download SVG icon from http://tabler-icons.io/i/download -->
+                     <a href="#" class="btn btn-success btn-block disabled" style="width: 100%"><!-- Download SVG icon from http://tabler-icons.io/i/download -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><polyline points="7 11 12 16 17 11" /><line x1="12" y1="4" x2="12" y2="16" /></svg> Download</a>
                   </div>
                </div>

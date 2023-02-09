@@ -16,6 +16,7 @@
       <title>GSCAN - Karantina</title>
       <link rel="icon" href="{{asset('img/harbour.png')}}" type="image/x-icon"/>
       <!-- CSS files -->
+      <link rel="icon" href="{{asset('/img/barcode-scan.png')}}" type="image/x-icon"/>
       <link href="{{asset('css/tabler.min.css')}}" rel="stylesheet"/>
       <link href="{{asset('css/tabler-flags.min.css')}}" rel="stylesheet"/>
       <link href="{{asset('css/tabler-payments.min.css')}}" rel="stylesheet"/>
@@ -47,6 +48,10 @@
 
          .bg-dark-blue{
             background-color: rgb(39, 56, 104)
+         }
+
+         .bg-logo {
+            background-color: rgb(231, 231, 231)
          }
 
          .pagination {
@@ -90,11 +95,11 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
                <span class="navbar-toggler-icon"></span>
             </button>
-            <h1 class="navbar-brand d-none-navbar-horizontal pe-0 pe-md-3 me-3" style="font-weight: 900">
-               <a href="/" class="me-2">
-               <img src="{{asset('img/gscan.png')}}" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+            <h1 class="navbar-brand d-none-navbar-horizontal pe-0 pe-md-3 me-3" style="font-weight: 800">
+               <a href="/" class="me-2 bg-logo   p-1 rounded">
+               <img src="{{asset('img/gscan-min.png')}}" alt="Tabler" style="height: 30px" class="navbar-brand-image">
                </a>  
-               Karantina
+               <span class="font-italic" style="font-style: italic">KARANTINA</span>  
             </h1>
             <div class="navbar-nav flex-row order-md-last">
                <a href="?theme=dark" class="nav-link px-0 hide-theme-dark me-3" title="Enable dark mode" data-bs-toggle="tooltip" data-bs-placement="bottom">
