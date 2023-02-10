@@ -30,11 +30,11 @@ class HomeController extends Controller
       // $containers = Container::orderBy('created_at', 'desc')->paginate(25);
       // $container = Container::orderBy('created_at', 'desc')->first();
 
-      $containers = Http::withHeaders([
-         'Accept' => 'applicaton/json'
-      ])->get(
-         "http://192.168.88.106/bc/karantina/tanggal/" . $today->format('Y-m-d'),
-      )->object();
+      // $containers = Http::withHeaders([
+      //    'Accept' => 'applicaton/json'
+      // ])->get(
+      //    "http://192.168.88.106/bc/karantina/tanggal/" . $today->format('Y-m-d'),
+      // )->object();
 
       // $users = Http::withHeaders([
       //    'Accept' => 'applicaton/json'
@@ -43,6 +43,15 @@ class HomeController extends Controller
       // )->object();
 
       // dd($users);
+
+
+      // Test Local API
+      $containers = Http::withHeaders([
+         'Accept' => 'applicaton/json'
+      ])->get(
+         "http://localhost:8002/api/bc/karantina/tanggal/" . $today->format('Y-m-d'),
+      )->object();
+      dd($containers->data);
 
 
 

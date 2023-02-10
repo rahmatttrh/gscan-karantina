@@ -55,10 +55,15 @@
                            <td colspan="11">{{$user->name}}</td>
                          </tr>
                      @endforeach --}}
-                     @if ($containers)
-                        @foreach ($containers as $cont)
-                           <tr class="{{$cont->entry_container1 == $container->entry_container1 ? 'bg-dark-blue' : ''}}">
-                              <td>
+                     @if ($containers->data)
+                        @foreach ($containers->data as $cont)
+                        {{-- <tr>
+                           <td>{{$cont->date}}</td>
+                           <td>{{$cont->pib_no}}</td>
+                        </tr> --}}
+                           {{-- <tr class="{{$cont->entry_container1 == $container->entry_container1 ? 'bg-dark-blue' : ''}}"> --}}
+                           <tr>
+                              {{-- <td>
                                  @if ($type == 1)
                                     <a style="text-decoration: none" href="{{route('container.detail', $cont->entry_container1 )}}">
                                        <small>{{$cont->entry_date}} <br>
@@ -73,7 +78,8 @@
                                     </a>
                                  @endif
                                  
-                              </td>
+                              </td> --}}
+                              <td>-</td>
                               <td><small>{{$cont->doc_no}}</small></td>
                               <td class="text-nowrap"><small>{{$cont->doc_date}}</small></td>
                               <td><small>{{$cont->doc_type}}</small></td>
