@@ -14,7 +14,6 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
       <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
       <title>GSCAN - Karantina</title>
-      <link rel="icon" href="{{asset('img/harbour.png')}}" type="image/x-icon"/>
       <!-- CSS files -->
       <link rel="icon" href="{{asset('/img/barcode-scan.png')}}" type="image/x-icon"/>
       <link href="{{asset('css/tabler.min.css')}}" rel="stylesheet"/>

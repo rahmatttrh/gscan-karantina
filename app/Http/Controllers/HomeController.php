@@ -30,17 +30,17 @@ class HomeController extends Controller
       // $containers = Container::orderBy('created_at', 'desc')->paginate(25);
       // $container = Container::orderBy('created_at', 'desc')->first();
 
-      // $containers = Http::withHeaders([
-      //    'Accept' => 'applicaton/json'
-      // ])->get(
-      //    "http://192.168.88.106/bc/karantina/tanggal/" . $today->format('Y-m-d'),
-      // )->object();
-
-      $users = Http::withHeaders([
+      $containers = Http::withHeaders([
          'Accept' => 'applicaton/json'
       ])->get(
-         "https://jsonplaceholder.typicode.com/users",
+         "http://192.168.88.106/bc/karantina/tanggal/" . $today->format('Y-m-d'),
       )->object();
+
+      // $users = Http::withHeaders([
+      //    'Accept' => 'applicaton/json'
+      // ])->get(
+      //    "https://jsonplaceholder.typicode.com/users",
+      // )->object();
 
       // dd($users);
 
@@ -48,9 +48,9 @@ class HomeController extends Controller
 
       return view('dashboard', [
          'type' => 1,
-         'containers' => null,
+         'containers' => $containers,
          'container' => null,
-         'users' => $users
+         // 'users' => $users
          // 'totalContainer' => count($containers),
          // 'container' => $container
       ])->with('i');

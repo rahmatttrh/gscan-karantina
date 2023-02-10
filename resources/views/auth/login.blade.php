@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Sign in - GSCAN Karantina</title>
+    <link rel="icon" href="{{asset('/img/barcode-scan.png')}}" type="image/x-icon"/>
     <!-- CSS files -->
     <link href="{{asset('css/tabler.min.css')}}" rel="stylesheet"/>
     <link href="{{asset('css/tabler-flags.min.css')}}" rel="stylesheet"/>
@@ -25,9 +26,9 @@
       <div class="container-tight ">
         <div class="text-center mb-2">
           <div  class="p-1 pt-3 bg-light rounded   mb-3">
-            <div class="">
+            
                <img class="" src="{{asset('img/gscan-min.png')}}" height="30" alt=""> 
-            </div>
+            
             
             <h3 class="mt-2 text-dark" style="font-weight: 700; font-style:italic">  KARANTINA</h3>
          </div>
