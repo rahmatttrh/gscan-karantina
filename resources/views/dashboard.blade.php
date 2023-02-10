@@ -83,10 +83,10 @@
                               <td><small>{{$cont->doc_no}}</small></td>
                               <td class="text-nowrap"><small>{{$cont->doc_date}}</small></td>
                               <td><small>{{$cont->doc_type}}</small></td>
-                              <td><small>{{$cont->lpn}}</small></td>
-                              <td><small>{{$cont->front_cont}}</small></td>
-                              <td><small>{{$cont->back_cont}}</small></td>
-                              <td class="text-wrap text-success"><small>{{$cont->speed}}</small></td>
+                              <td><small>{{$cont->entry_lpn}}</small></td>
+                              <td><small>-</small></td>
+                              <td><small>-</small></td>
+                              <td class="text-wrap text-success"><small>{{$cont->entry_speed}}</small></td>
                               <td><small>{{$cont->entry_container_weight}}</small></td>
                               <td><small>-</small></td>
                               <td><small>-</small></td>
