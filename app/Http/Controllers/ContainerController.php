@@ -28,16 +28,18 @@ class ContainerController extends Controller
       ])->get(
          "http://192.168.88.106/bc/karantina/container/" . $container,
       )->object();
+      
+// dd($container->data[0]);
 
       return view('dashboard', [
-         'type' => 1,
+         'type' => 1,   
          'containers' => $containers,
-         'totalContainer' => count($containers),
+         'totalContainer' => count($containers->data),
          'container' => $container
       ])->with('i');
    }
 
-   public function detailPeriod($date1, $date2, $container)
+   public function detailPeriod($date1, $date2, $cont)
    {
       $containers = Http::withHeaders([
          'Accept' => 'applicaton/json'
@@ -48,14 +50,14 @@ class ContainerController extends Controller
       $container = Http::withHeaders([
          'Accept' => 'applicaton/json'
       ])->get(
-         "http://192.168.88.106/bc/karantina/container/" . $container,
+         "http://192.168.88.106/bc/karantina/container/" . $cont,
       )->object();
 
 
       $container = Http::withHeaders([
          'Accept' => 'applicaton/json'
       ])->get(
-         "http://192.168.88.106/bc/karantina/container/" . $container,
+         "http://192.168.88.106/bc/karantina/container/" . $cont,
       )->object();
 
       return view('dashboard', [
@@ -63,7 +65,7 @@ class ContainerController extends Controller
          'date1' => $date1,
          'date2' => $date2,
          'containers' => $containers,
-         'totalContainer' => count($containers),
+         // 'totalContainer' => count($containers),
          'container' => $container
       ])->with('i');
    }
@@ -78,13 +80,13 @@ class ContainerController extends Controller
       )->object();
 
 
-
+      // dd($containers);
       return view('dashboard', [
          'type' => 2,
          'date1' => $req->date1,
          'date2' => $req->date2,
          'containers' => $containers,
-         'totalContainer' => count($containers),
+         // 'totalContainer' => count($containers),
          'container' => null
       ])->with('i');
    }

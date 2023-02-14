@@ -30,7 +30,7 @@ class HomeController extends Controller
       // $containers = Container::orderBy('created_at', 'desc')->paginate(25);
       // $container = Container::orderBy('created_at', 'desc')->first();
 
-      $containers = Http::withHeaders([
+      $response = Http::withHeaders([
          'Accept' => 'applicaton/json'
       ])->get(
          "http://192.168.88.106/bc/karantina/tanggal/" . $today->format('Y-m-d'),
@@ -42,13 +42,15 @@ class HomeController extends Controller
       //    "https://jsonplaceholder.typicode.com/users",
       // )->object();
 
-      // dd($users);
-
+      // dd($containers);
+      // $containers = json_decode($response, true);
+      // dd($response);
 
 
       return view('dashboard', [
          'type' => 1,
-         'containers' => $containers,
+         // 'containers' =>json_decode($response->data, true),
+         'containers' => $response,
          'container' => null,
          // 'users' => $users
          // 'totalContainer' => count($containers),

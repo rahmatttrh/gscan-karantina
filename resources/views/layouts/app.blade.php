@@ -49,6 +49,10 @@
             background-color: rgb(39, 56, 104)
          }
 
+         table td, table th {
+            text-align: center;
+         }
+
          .bg-logo {
             background-color: rgb(231, 231, 231)
          }
@@ -250,25 +254,7 @@
       </div>
       
    </div>
-   <div class="modal modal-blur fade" id="modal-full-width" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered " role="document">
-         <div class="modal-content border">
-            <div class="modal-header">
-               <h5 class="modal-title text-secondary">Detail Image</h5>
-               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-               <figure class="zoom" onmousemove="zoom(event)" style="background-image: url({{asset('img/xray/3.jpg')}})">
-                  <img src="{{asset('img/xray/3.jpg')}}" />
-                </figure>
-               {{-- <img class="w-100" src="{{asset('img/xray/1.jpeg')}}" /> --}}
-               {{-- <figure id="magnifying_area">
-                  <img id="magnifying_img"  src="{{asset('img/xray/1.jpeg')}}" />
-               </figure> --}}
-            </div>
-         </div>
-      </div>
-   </div>
+   
    <div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
          <div class="modal-content">

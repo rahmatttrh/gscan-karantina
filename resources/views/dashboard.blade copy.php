@@ -49,7 +49,7 @@
                   <tbody>
                      @foreach ($containers as $cont)
                         <tr class="{{$cont->entry_container1 == $container->entry_container1 ? 'bg-dark-blue' : ''}}">
-                           <td>
+                           <td class="text-center">
                               <a style="text-decoration: none" href="{{route('container.detail', $cont->entry_container1 )}}">
                                  <small>{{$cont->entry_date}} <br>
                                  {{$cont->entry_time}}
