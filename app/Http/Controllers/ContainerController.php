@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Container;
+use App\Models\ContainerDesc;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -30,6 +31,8 @@ class ContainerController extends Controller
       )->object();
       
 // dd($container->data[0]);
+
+         // dd($container);
 
       return view('dashboard', [
          'type' => 1,   
@@ -89,5 +92,17 @@ class ContainerController extends Controller
          // 'totalContainer' => count($containers),
          'container' => null
       ])->with('i');
+   }
+
+   public function store(Request $request){
+      // dd($request->entry_container1);
+      ContainerDesc::create([
+         'entry_container1' => $request->entry_container1,
+         'deskripsi' => $request->desc
+      ]);
+
+      
+
+      return redirect()->back();
    }
 }

@@ -21,14 +21,12 @@
       <link href="{{asset('css/tabler-payments.min.css')}}" rel="stylesheet"/>
       <link href="{{asset('css/tabler-vendors.min.css')}}" rel="stylesheet"/>
       <link href="{{asset('css/demo.min.css')}}" rel="stylesheet"/>
-      <script>
-         $(document).ready(function() {
-            console.log('okee');
-            $('.carousel').carousel({
-            interval: false,
-            });
-         })
-      </script>
+      <link href="{{asset('css/datatablebs.min.css')}}" rel="stylesheet"/>
+      @stack('css')
+
+      <!-- @endstack -->
+      <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+     
       <style>
          body a {
             text-decoration: none;
@@ -364,14 +362,31 @@
       </div>
    </div>
    <!-- Libs JS -->
-   <script src="{{asset('js/core/jquery.3.2.1.min.js')}}"></script>
-      <script src="{{asset('js/datatables/datatables.min.js')}}"></script>
+      <script src="{{asset('js/jquery.js')}}"></script>
+      <!-- <script src="{{asset('js/datatables/datatables.min.js')}}"></script> -->
+      <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
       <!-- Libs JS -->
       <script src="{{asset('libs/apexcharts/dist/apexcharts.min.js')}}"></script>
       <!-- Tabler Core -->
       <script src="{{asset('js/tabler.min.js')}}"></script>
       <script src="{{asset('js/demo.min.js')}}"></script>
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <!-- <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+      <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap4.min.js"></script> -->
+      <script src="{{asset('js/datatable.min.js')}}"></script>
+      <script src="{{asset('js/datatablebs.min.js')}}"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.0.0/openseadragon.min.js"></script>
+      <script src="{{asset('openseadragon/openseadragon.min.js')}}"></script>
+      @stack('zoom');
+      
+      <script>
+         $(document).ready(function() {
+            $('.datatable').dataTable({
+               "lengthMenu": [5, 10, 15, 25, 50, 100 ],
+               "pageLength": -1,
+            });
+         });
+      </script>
       <script>
          $(document).ready(function() {
             console.log('okee');
