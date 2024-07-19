@@ -22,8 +22,8 @@ PDF Example
 
    table td {
       font-size: 10px;
-      /* padding-top: 5px;
-  padding-bottom: 5px; */
+      padding-top: 5px;
+  padding-bottom: 5px;
       padding-left: 5px;
       padding-right: 5px;
    }
