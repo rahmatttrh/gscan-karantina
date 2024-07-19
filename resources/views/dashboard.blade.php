@@ -55,8 +55,8 @@
                            <td colspan="11">{{$user->name}}</td>
                          </tr>
                      @endforeach --}}
-                     @if ($containers->data)
-                        @foreach ($containers->data as $cont)
+                     @if ($containers)
+                        @foreach ($containers as $cont)
                         {{-- <tr>
                            <td>{{$cont->date}}</td>
                            <td>{{$cont->pib_no}}</td>
@@ -172,6 +172,9 @@
             </div>
             <div class="card-footer">
                {{-- @if ($container) --}}
+               <form action="{{route('container.store')}}" method="POST">
+                  @csrf
+
                <div class="row">
                   <div class="col-3">
                      <div class="form-floating mb-3">
@@ -204,10 +207,11 @@
                      </div>
                   </div>
                   <div class="col-3">
-                     <a href="#" class="btn btn-success btn-block disabled" style="width: 100%"><!-- Download SVG icon from http://tabler-icons.io/i/download -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><polyline points="7 11 12 16 17 11" /><line x1="12" y1="4" x2="12" y2="16" /></svg> Download</a>
+                     <button type="submit" class="btn btn-success btn-block " style="width: 100%"><!-- Download SVG icon from http://tabler-icons.io/i/download -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><polyline points="7 11 12 16 17 11" /><line x1="12" y1="4" x2="12" y2="16" /></svg> Download</button>
                   </div>
                </div>
+            </form>
                {{-- @endif --}}
                
             </div>

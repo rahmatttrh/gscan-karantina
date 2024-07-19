@@ -88,4 +88,9 @@ class ContainerController extends Controller
          'container' => null
       ])->with('i');
    }
+
+   public function store(Request $req){
+
+      return view('pdf.container-single');
+   }
 }
