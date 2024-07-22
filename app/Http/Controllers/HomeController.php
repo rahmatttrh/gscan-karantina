@@ -27,8 +27,8 @@ class HomeController extends Controller
    public function index()
    {
       $today = Carbon::now();
-      // $containers = Container::orderBy('created_at', 'desc')->paginate(25);
-      // $container = Container::orderBy('created_at', 'desc')->first();
+      $containers = Container::orderBy('created_at', 'desc')->paginate(25);
+      $container = Container::orderBy('created_at', 'desc')->first();
 
       $response = Http::withHeaders([
          'Accept' => 'applicaton/json'
@@ -45,6 +45,15 @@ class HomeController extends Controller
       // dd($containers);
       // $containers = json_decode($response, true);
       // dd($response);
+
+      // Test Local API
+      // $containers = Http::withHeaders([
+      //    'Accept' => 'applicaton/json'
+      // ])->get(
+      //    "http://localhost:8002/api/bc/karantina/tanggal/" . $today->format('Y-m-d'),
+      // )->object();
+      // dd($containers->data);
+
 
 
       return view('dashboard', [

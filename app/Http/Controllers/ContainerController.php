@@ -34,6 +34,8 @@ class ContainerController extends Controller
 
          // dd($container);
 
+        
+
       return view('dashboard', [
          'type' => 1,   
          'containers' => $containers,
@@ -44,6 +46,7 @@ class ContainerController extends Controller
 
    public function detailPeriod($date1, $date2, $cont)
    {
+      // dd('ok');
       $containers = Http::withHeaders([
          'Accept' => 'applicaton/json'
       ])->get(
@@ -63,13 +66,18 @@ class ContainerController extends Controller
          "http://192.168.88.106/bc/karantina/container/" . $cont,
       )->object();
 
+      $conDesc = ContainerDesc::where('entry_container1', $cont)->first();
+      
+      // dd($conDesc);
+
       return view('dashboard', [
          'type' => 2,
          'date1' => $date1,
          'date2' => $date2,
          'containers' => $containers,
          // 'totalContainer' => count($containers),
-         'container' => $container
+         'container' => $container,
+         'desc' => $conDesc
       ])->with('i');
    }
 
@@ -96,12 +104,38 @@ class ContainerController extends Controller
 
    public function store(Request $request){
       // dd($request->entry_container1);
-      ContainerDesc::create([
-         'entry_container1' => $request->entry_container1,
-         'deskripsi' => $request->desc
-      ]);
+      $currentConDesc = ContainerDesc::where('entry_container1', $request->entry_container1)->first();
+
+      if ($currentConDesc != null) {
+         // dd($currentConDesc);
+         $currentConDesc->update([
+            'desc' => $request->desc
+         ]);
+         $conDesc = $currentConDesc;
+      } else {
+         $conDesc = ContainerDesc::create([
+            'entry_container1' => $request->entry_container1,
+            'desc' => $request->desc
+         ]);
+      }
 
       
+
+      $container = Http::withHeaders([
+         'Accept' => 'applicaton/json'
+      ])->get(
+         "http://192.168.88.106/bc/karantina/container/" . $request->entry_container1,
+      )->object();
+
+      // dd($container);
+      return view('pdf.container-single', [
+         'container' => $container,
+         'conDesc' => $conDesc
+      ]);
+
+
+
+
 
       return redirect()->back();
    }

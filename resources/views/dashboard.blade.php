@@ -215,7 +215,7 @@
             </div>
             <div class="card-footer">
                @if ($container)
-               <form action="{{route('container.store')}}" method="POST">
+               <form action="{{route('container.store')}}" method="POST" target="_blank">
                   @csrf
                   <input type="text" name="entry_container1" id="entry_container1" value="{{$container->data[0]->entry_container1}}" hidden>
                <div class="row">
@@ -245,7 +245,7 @@
                   </div>
                   <div class="col-9">
                      <div class="form-floating mb-3">
-                        <input type="text" required class="form-control" id="desc" name="desc"  >
+                        <input type="text" required class="form-control" value="{{$desc->desc ?? '-'}}" id="desc" name="desc"  >
                         <label for="date">Inspection Description</label>
                      </div>
                   </div>
